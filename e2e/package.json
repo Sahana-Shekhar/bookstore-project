@@ -1,0 +1,13 @@
+{
+  "name": "bookstore-e2e",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Real-browser end-to-end tests. Isolated from client/ and server/ so neither gains dependencies.",
+  "scripts": {
+    "test": "node auth.e2e.mjs"
+  },
+  "dependencies": {
+    "playwright-core": "^1.64.1"
+  }
+}

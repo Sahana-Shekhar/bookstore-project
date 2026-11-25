@@ -1,0 +1,167 @@
+// Bookstore colour tokens: warm cream + deep navy + restrained gold.
+// Carbon components read the --cds-* custom properties, so overriding them here re-skins every
+// Carbon component without touching the components themselves. The <html> element carries
+// `cds--white` (light) or `cds--g100` (dark); see public/theme-init.js and ThemeContext.jsx.
+// `html.` raises specificity above Carbon's own `.cds--white` / `.cds--g100` blocks.
+
+html.cds--white {
+  --bk-gold: #b08a2e; // decorative only (rules, borders); too light for body text
+  --bk-gold-text: #7a5c0e;
+  --bk-footer-bg: #16213a;
+  --bk-footer-text: #e9e2d0;
+  --bk-footer-muted: #b9bfd0;
+  --bk-footer-accent: #e0b84c;
+  --bk-footer-border: #2b3857;
+  --bk-shadow: 0 1px 2px rgb(26 34 56 / 8%), 0 4px 14px rgb(26 34 56 / 6%);
+
+  --cds-background: #f8f3e8;
+  --cds-background-brand: #1f3a6e;
+  --cds-background-inverse: #1a2238;
+  --cds-background-inverse-hover: #2b3550;
+
+  --cds-layer-01: #fffcf5;
+  --cds-layer-02: #f8f3e8;
+  --cds-layer-03: #fffcf5;
+  --cds-layer-hover-01: #efe8d6;
+  --cds-layer-hover-02: #efe8d6;
+  --cds-layer-hover-03: #efe8d6;
+  --cds-layer-active-01: #e2d9c2;
+  --cds-layer-active-02: #e2d9c2;
+  --cds-layer-active-03: #e2d9c2;
+  --cds-layer-selected-01: #ece3cd;
+  --cds-layer-selected-02: #ece3cd;
+  --cds-layer-selected-03: #ece3cd;
+  --cds-layer-accent-01: #ece3cd;
+  --cds-layer-accent-02: #ece3cd;
+  --cds-layer-accent-03: #ece3cd;
+  --cds-layer-background-01: #f8f3e8;
+  --cds-layer-background-02: #fffcf5;
+  --cds-layer-background-03: #f8f3e8;
+  --cds-field-01: #fffcf5;
+  --cds-field-02: #f8f3e8;
+  --cds-field-03: #fffcf5;
+  --cds-field-hover-01: #efe8d6;
+  --cds-field-hover-02: #efe8d6;
+  --cds-field-hover-03: #efe8d6;
+
+  --cds-border-subtle-00: #e3dac6;
+  --cds-border-subtle-01: #e3dac6;
+  --cds-border-subtle-02: #d9cfb7;
+  --cds-border-subtle-03: #e3dac6;
+  --cds-border-strong-01: #7d776a;
+  --cds-border-strong-02: #7d776a;
+  --cds-border-strong-03: #7d776a;
+  --cds-border-tile-01: #d9cfb7;
+  --cds-border-tile-02: #d9cfb7;
+  --cds-border-tile-03: #d9cfb7;
+  --cds-border-interactive: #1f3a6e;
+
+  --cds-text-primary: #1a2238;
+  --cds-text-secondary: #454c5f;
+  --cds-text-helper: #5a6072;
+  --cds-text-placeholder: #6b7183;
+  --cds-text-inverse: #f8f3e8;
+  --cds-icon-primary: #1a2238;
+  --cds-icon-secondary: #454c5f;
+  --cds-icon-inverse: #f8f3e8;
+
+  --cds-interactive: #1f3a6e;
+  --cds-link-primary: #1f3a6e;
+  --cds-link-primary-hover: #12264d;
+  --cds-link-secondary: #12264d;
+  --cds-link-visited: #5b3a8c;
+  --cds-focus: #1f3a6e;
+  --cds-focus-inset: #fffcf5;
+  --cds-highlight: #f1e2b3;
+
+  --cds-button-primary: #1f3a6e;
+  --cds-button-primary-hover: #17305c;
+  --cds-button-primary-active: #0f2147;
+  --cds-button-secondary: #3d4560;
+  --cds-button-secondary-hover: #2f364d;
+  --cds-button-secondary-active: #5a6178;
+  --cds-button-tertiary: #1f3a6e;
+  --cds-button-tertiary-hover: #1f3a6e;
+  --cds-button-tertiary-active: #0f2147;
+}
+
+html.cds--g100 {
+  --bk-gold: #e0b84c;
+  --bk-gold-text: #e3bd55;
+  --bk-footer-bg: #090e1a;
+  --bk-footer-text: #e9e2d0;
+  --bk-footer-muted: #a9b0c4;
+  --bk-footer-accent: #e0b84c;
+  --bk-footer-border: #222d4a;
+  --bk-shadow: 0 1px 2px rgb(0 0 0 / 35%), 0 6px 18px rgb(0 0 0 / 25%);
+
+  --cds-background: #0e1526;
+  --cds-background-brand: #4a6cb8;
+  --cds-background-inverse: #f4ecda;
+  --cds-background-inverse-hover: #e5dcc6;
+
+  --cds-layer-01: #172038;
+  --cds-layer-02: #1f2a47;
+  --cds-layer-03: #27345a;
+  --cds-layer-hover-01: #202b4b;
+  --cds-layer-hover-02: #2a3659;
+  --cds-layer-hover-03: #324069;
+  --cds-layer-active-01: #2b3860;
+  --cds-layer-active-02: #34426a;
+  --cds-layer-active-03: #3e4d78;
+  --cds-layer-selected-01: #26335a;
+  --cds-layer-selected-02: #2f3d68;
+  --cds-layer-selected-03: #384874;
+  --cds-layer-accent-01: #26335a;
+  --cds-layer-accent-02: #2f3d68;
+  --cds-layer-accent-03: #384874;
+  --cds-layer-background-01: #0e1526;
+  --cds-layer-background-02: #172038;
+  --cds-layer-background-03: #1f2a47;
+  --cds-field-01: #172038;
+  --cds-field-02: #1f2a47;
+  --cds-field-03: #27345a;
+  --cds-field-hover-01: #202b4b;
+  --cds-field-hover-02: #2a3659;
+  --cds-field-hover-03: #324069;
+
+  --cds-border-subtle-00: #2a3658;
+  --cds-border-subtle-01: #2a3658;
+  --cds-border-subtle-02: #34426a;
+  --cds-border-subtle-03: #3e4d78;
+  --cds-border-strong-01: #7c88a8;
+  --cds-border-strong-02: #7c88a8;
+  --cds-border-strong-03: #8b96b4;
+  --cds-border-tile-01: #34426a;
+  --cds-border-tile-02: #3e4d78;
+  --cds-border-tile-03: #4a5a88;
+  --cds-border-interactive: #7fa0ea;
+
+  --cds-text-primary: #f4ecda;
+  --cds-text-secondary: #c5cada;
+  --cds-text-helper: #a9b0c4;
+  --cds-text-placeholder: #8d95ab;
+  --cds-text-inverse: #0e1526;
+  --cds-icon-primary: #f4ecda;
+  --cds-icon-secondary: #c5cada;
+  --cds-icon-inverse: #0e1526;
+
+  --cds-interactive: #5f86e0;
+  --cds-link-primary: #e3bd55;
+  --cds-link-primary-hover: #f0d27f;
+  --cds-link-secondary: #f0d27f;
+  --cds-link-visited: #c9a8e8;
+  --cds-focus: #e3bd55;
+  --cds-focus-inset: #0e1526;
+  --cds-highlight: #3b3520;
+
+  --cds-button-primary: #4a6cb8;
+  --cds-button-primary-hover: #3f5fa6;
+  --cds-button-primary-active: #324e8c;
+  --cds-button-secondary: #3a4666;
+  --cds-button-secondary-hover: #4a5780;
+  --cds-button-secondary-active: #5a6a9a;
+  --cds-button-tertiary: #e3bd55;
+  --cds-button-tertiary-hover: #e3bd55;
+  --cds-button-tertiary-active: #f0d27f;
+}

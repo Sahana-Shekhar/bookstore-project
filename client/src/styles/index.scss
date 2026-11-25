@@ -1,0 +1,1020 @@
+@use '@carbon/react' with (
+  $font-path: '@ibm/plex'
+);
+@use 'tokens';
+
+// ---------------------------------------------------------------------------
+// Typography: IBM Plex Serif for headings and brand, Carbon's IBM Plex Sans for UI text.
+// ---------------------------------------------------------------------------
+$bk-serif: 'IBM Plex Serif', Georgia, 'Times New Roman', serif;
+
+.bk-app h1,
+.bk-app h2,
+.bk-app h3,
+.bk-brand {
+  font-family: $bk-serif;
+}
+
+.bk-app h1 {
+  margin-block-end: 1rem;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.25;
+
+  @media (min-width: 42rem) {
+    font-size: 2.5rem;
+  }
+}
+
+.bk-app h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+// ---------------------------------------------------------------------------
+// App shell: header (fixed, 3rem) / main (grows) / footer (sticks to the bottom of short pages)
+// ---------------------------------------------------------------------------
+.bk-app {
+  display: flex;
+  min-block-size: 100vh;
+  min-block-size: 100dvh;
+  flex-direction: column;
+  background-color: var(--cds-background);
+  color: var(--cds-text-primary);
+}
+
+.bk-main {
+  flex: 1 0 auto;
+  padding-block-start: 3rem; // clears the fixed Carbon header
+  // Anchor target of the skip link; focus is moved here programmatically.
+  &:focus {
+    outline: none;
+  }
+}
+
+.bk-container {
+  box-sizing: border-box;
+  inline-size: 100%;
+  margin-inline: auto;
+  max-inline-size: 80rem;
+  padding: 2rem 1rem 3rem;
+
+  @media (min-width: 42rem) {
+    padding-inline: 2rem;
+  }
+
+  @media (min-width: 66rem) {
+    padding-block: 3rem 4rem;
+  }
+
+  &--narrow {
+    max-inline-size: 34rem;
+  }
+
+  &--prose {
+    max-inline-size: 46rem;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Header
+// ---------------------------------------------------------------------------
+.bk-app .cds--header {
+  border-block-end: 1px solid var(--bk-gold);
+}
+
+.bk-brand.cds--header__name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--cds-text-primary);
+}
+
+.bk-brand.cds--header__name:hover {
+  color: var(--cds-text-primary);
+}
+
+// ---------------------------------------------------------------------------
+// Home hero
+// ---------------------------------------------------------------------------
+.bk-hero {
+  padding: 2.5rem 1.5rem;
+  border: 1px solid var(--cds-border-subtle-01);
+  border-block-start: 3px solid var(--bk-gold);
+  background-color: var(--cds-layer-01);
+  box-shadow: var(--bk-shadow);
+
+  @media (min-width: 42rem) {
+    padding: 4rem 3rem;
+  }
+
+  p {
+    max-inline-size: 36rem;
+    margin-block-end: 2rem;
+    color: var(--cds-text-secondary);
+    font-size: 1.125rem;
+    line-height: 1.6;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Static info pages (About / Contact / Help)
+// ---------------------------------------------------------------------------
+.bk-prose {
+  p,
+  ul {
+    margin-block-end: 1rem;
+    color: var(--cds-text-secondary);
+    line-height: 1.6;
+  }
+
+  ul {
+    padding-inline-start: 1.25rem;
+    list-style: disc;
+  }
+
+  h2 {
+    margin-block: 2rem 0.75rem;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Footer: deep navy with a gold rule, identical in light and dark themes
+// ---------------------------------------------------------------------------
+.bk-footer {
+  flex-shrink: 0;
+  border-block-start: 3px solid var(--bk-gold);
+  background-color: var(--bk-footer-bg);
+  color: var(--bk-footer-text);
+
+  a {
+    color: var(--bk-footer-text);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--bk-footer-accent);
+      text-decoration: underline;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--bk-footer-accent);
+      outline-offset: 2px;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    box-sizing: border-box;
+    gap: 2rem;
+    grid-template-columns: 1fr;
+    inline-size: 100%;
+    margin-inline: auto;
+    max-inline-size: 80rem;
+    padding: 2.5rem 1rem;
+
+    @media (min-width: 42rem) {
+      grid-template-columns: repeat(2, 1fr);
+      padding-inline: 2rem;
+    }
+
+    @media (min-width: 66rem) {
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+    }
+  }
+
+  &__brand {
+    margin-block-end: 0.75rem;
+    font-family: $bk-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  &__blurb {
+    max-inline-size: 22rem;
+    color: var(--bk-footer-muted);
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  // .bk-footer prefix beats the .bk-app h2 heading rule above.
+  .bk-footer__heading,
+  &__heading {
+    margin-block-end: 0.75rem;
+    color: var(--bk-footer-accent);
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  &__list {
+    margin: 0;
+    padding: 0;
+    font-size: 0.875rem;
+    list-style: none;
+
+    li + li {
+      margin-block-start: 0.5rem;
+    }
+  }
+
+  &__bottom {
+    border-block-start: 1px solid var(--bk-footer-border);
+    color: var(--bk-footer-muted);
+    font-size: 0.75rem;
+    padding: 1rem;
+    text-align: center;
+  }
+}
+
+// Login / Register
+.bk-form-page {
+  inline-size: 100%;
+  margin-inline: auto;
+  max-inline-size: 28rem;
+}
+
+// ===========================================================================
+// Catalogue and book details
+// ===========================================================================
+.bk-catalogue__header {
+  scroll-margin-block-start: 4rem; // keeps the heading clear of the fixed header after paging
+  margin-block-end: 1.5rem;
+
+  h1 {
+    margin-block-end: 0.5rem;
+  }
+}
+
+.bk-catalogue__lede {
+  color: var(--cds-text-secondary);
+}
+
+.bk-toolbar {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+  margin-block-end: 1rem;
+
+  @media (min-width: 42rem) {
+    align-items: end;
+    grid-template-columns: minmax(0, 1fr) 16rem;
+  }
+}
+
+.bk-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-block-end: 1rem;
+}
+
+.bk-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.375rem 0.875rem;
+  border: 1px solid var(--cds-border-strong-01);
+  background: transparent;
+  border-radius: 1.25rem;
+  color: var(--cds-text-primary);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.875rem;
+  gap: 0.5rem;
+  min-block-size: 2.25rem;
+
+  &:hover {
+    background: var(--cds-layer-hover-01);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--cds-focus);
+    outline-offset: 2px;
+  }
+
+  &[aria-pressed='true'] {
+    border-color: var(--cds-button-primary);
+    background: var(--cds-button-primary);
+    color: var(--cds-text-on-color);
+  }
+}
+
+.bk-chip__count {
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+.bk-catalogue__summary {
+  min-block-size: 1.5rem;
+  margin-block-end: 1rem;
+  color: var(--cds-text-secondary);
+  font-size: 0.875rem;
+}
+
+.bk-grid {
+  display: grid;
+  margin: 0;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  list-style: none;
+  padding: 0;
+
+  @media (min-width: 42rem) {
+    gap: 1.5rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  @media (min-width: 66rem) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  > li {
+    min-inline-size: 0;
+  }
+}
+
+// The previous results stay visible, dimmed, while the next page loads (no layout jump).
+.bk-results--busy {
+  opacity: 0.55;
+  pointer-events: none;
+  transition: opacity 0.15s;
+}
+
+.bk-pagination {
+  display: flex;
+  justify-content: center;
+  margin-block-start: 2.5rem;
+}
+
+.bk-state {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  padding-block: 1rem;
+
+  &--empty {
+    align-items: center;
+    padding: 3rem 1rem;
+    border: 1px dashed var(--cds-border-strong-01);
+    background: var(--cds-layer-01);
+    text-align: center;
+
+    p {
+      max-inline-size: 28rem;
+      color: var(--cds-text-secondary);
+    }
+  }
+}
+
+// ---- Card ----
+.bk-card {
+  position: relative; // anchor for the stretched title link
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  border: 1px solid var(--cds-border-subtle-01);
+  background: var(--cds-layer-01);
+  box-shadow: var(--bk-shadow);
+  transition: border-color 0.15s;
+
+  &:hover {
+    border-color: var(--bk-gold);
+  }
+
+  &:focus-within {
+    outline: 2px solid var(--cds-focus);
+    outline-offset: 2px;
+  }
+
+  &__body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 0.875rem;
+    gap: 0.25rem;
+  }
+
+  &__category {
+    color: var(--bk-gold-text);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .bk-card__title,
+  &__title {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.35;
+  }
+
+  &__link {
+    color: var(--cds-text-primary);
+    text-decoration: none;
+
+    // Stretches the link over the whole card so any tap opens the book.
+    &::after {
+      position: absolute;
+      content: '';
+      inset: 0;
+    }
+
+    &:focus-visible {
+      outline: none; // the card shows the focus ring via :focus-within
+    }
+  }
+
+  &__author {
+    color: var(--cds-text-secondary);
+    font-size: 0.875rem;
+  }
+
+  &__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-block-start: auto;
+    padding-block-start: 0.5rem;
+    gap: 0.5rem;
+  }
+
+  &__price {
+    font-size: 1.125rem;
+    font-weight: 600;
+  }
+
+  &--skeleton {
+    pointer-events: none;
+  }
+}
+
+.bk-card__cover-skeleton.cds--skeleton__placeholder {
+  inline-size: 100%;
+  block-size: auto;
+  aspect-ratio: 2 / 3;
+}
+
+.bk-stock-tag.cds--tag {
+  margin: 0;
+}
+
+// ---- Cover ----
+.bk-cover {
+  display: flex;
+  overflow: hidden;
+  box-sizing: border-box;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8% 10%;
+  aspect-ratio: 2 / 3;
+  color: #f6efdc;
+  gap: 0.75rem;
+  text-align: center;
+  inline-size: 100%;
+
+  &__title {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    font-family: $bk-serif;
+    font-size: clamp(0.9rem, 3.2vw, 1.25rem);
+    font-weight: 600;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+  }
+
+  &__rule {
+    inline-size: 2.5rem;
+    block-size: 2px;
+    background: #e0b84c;
+  }
+
+  &__author {
+    font-size: clamp(0.7rem, 2.4vw, 0.875rem);
+    letter-spacing: 0.04em;
+    overflow-wrap: anywhere;
+    text-transform: uppercase;
+  }
+
+  &--navy { background: linear-gradient(160deg, #1f3a6e, #14264a); }
+  &--teal { background: linear-gradient(160deg, #1b5e63, #123f43); }
+  &--wine { background: linear-gradient(160deg, #6e1f3a, #4a1426); }
+  &--forest { background: linear-gradient(160deg, #2c5a34, #1c3d22); }
+  &--umber { background: linear-gradient(160deg, #7a4a1c, #52300f); }
+  &--plum { background: linear-gradient(160deg, #4d2f78, #342052); }
+
+  &--image {
+    padding: 0;
+    background: var(--cds-layer-02);
+
+    img {
+      inline-size: 100%;
+      block-size: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+// ---- Book details ----
+.bk-backlink {
+  display: inline-flex;
+  align-items: center;
+  color: var(--cds-link-primary);
+  gap: 0.375rem;
+  min-block-size: 2.75rem;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--cds-focus);
+    outline-offset: 2px;
+  }
+}
+
+.bk-detail {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+
+  @media (min-width: 42rem) {
+    gap: 2.5rem;
+    grid-template-columns: 16rem minmax(0, 1fr);
+  }
+
+  @media (min-width: 66rem) {
+    grid-template-columns: 22rem minmax(0, 1fr);
+  }
+
+  > .bk-cover,
+  > .bk-detail__cover-skeleton {
+    align-self: start;
+    justify-self: center;
+    max-inline-size: 18rem;
+    box-shadow: var(--bk-shadow);
+
+    @media (min-width: 42rem) {
+      justify-self: stretch;
+      max-inline-size: none;
+    }
+  }
+
+  &__info {
+    display: flex;
+    min-inline-size: 0;
+    flex-direction: column;
+    gap: 1rem;
+
+    h1 {
+      margin: 0;
+    }
+
+    h2 {
+      margin-block-end: 0.5rem;
+      font-size: 1.25rem;
+    }
+  }
+
+  &__category {
+    color: var(--bk-gold-text);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  &__author {
+    color: var(--cds-text-secondary);
+    font-size: 1.125rem;
+  }
+
+  &__buy {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding-block: 0.75rem;
+    border-block: 1px solid var(--cds-border-subtle-01);
+    gap: 1rem;
+  }
+
+  &__price {
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 600;
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  &__action-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  &__cart-note {
+    margin: 0;
+    color: var(--cds-text-secondary);
+    font-size: 0.875rem;
+  }
+
+  &__cart-message:empty {
+    display: none;
+  }
+
+  &__description {
+    max-inline-size: 42rem;
+    color: var(--cds-text-secondary);
+    line-height: 1.7;
+  }
+}
+
+.bk-detail__cover-skeleton.cds--skeleton__placeholder {
+  inline-size: 100%;
+  block-size: auto;
+  aspect-ratio: 2 / 3;
+}
+
+// ---- Cart ----
+.bk-cart-badge {
+  display: inline-flex;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 0.375rem;
+  border-radius: 0.5rem;
+  margin-inline-start: 0.5rem;
+  background: #e0b84c;
+  color: #1a2238;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
+  min-block-size: 1.125rem;
+  min-inline-size: 1.25rem;
+}
+
+.bk-state__title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.bk-cart {
+  display: grid;
+  align-items: start;
+  gap: 1.5rem;
+  grid-template-columns: minmax(0, 1fr);
+
+  @media (min-width: 66rem) {
+    gap: 2rem;
+    grid-template-columns: minmax(0, 1fr) 22rem;
+  }
+
+  &__lines {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+    gap: 0.75rem;
+    list-style: none;
+  }
+
+  &__summary {
+    padding: 1.25rem;
+    border: 1px solid var(--cds-border-subtle-01);
+    background: var(--cds-layer-01);
+    box-shadow: var(--bk-shadow);
+
+    h2 {
+      margin-block-end: 1rem;
+      font-size: 1.25rem;
+    }
+
+    @media (min-width: 66rem) {
+      position: sticky;
+      inset-block-start: 4rem;
+    }
+  }
+}
+
+.bk-cart-line {
+  display: grid;
+  align-items: start;
+  padding: 1rem;
+  border: 1px solid var(--cds-border-subtle-01);
+  background: var(--cds-layer-01);
+  gap: 0.75rem 1rem;
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+  grid-template-areas:
+    'cover info'
+    'actions actions'
+    'total total';
+
+  @media (min-width: 42rem) {
+    align-items: center;
+    grid-template-columns: 5rem minmax(0, 1fr) auto 7rem;
+    grid-template-areas: 'cover info actions total';
+  }
+
+  &--unverified,
+  &--soldout {
+    border-style: dashed;
+  }
+
+  &--unverified {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__cover {
+    display: block;
+    grid-area: cover;
+    box-shadow: var(--bk-shadow);
+
+    .bk-cover {
+      padding: 6%;
+    }
+
+    .bk-cover__title {
+      font-size: 0.5rem;
+      -webkit-line-clamp: 4;
+    }
+
+    .bk-cover__rule,
+    .bk-cover__author {
+      display: none;
+    }
+  }
+
+  &__info {
+    display: flex;
+    min-inline-size: 0;
+    grid-area: info;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+
+    a {
+      color: var(--cds-text-primary);
+    }
+  }
+
+  &__meta {
+    margin: 0;
+    color: var(--cds-text-secondary);
+    font-size: 0.875rem;
+  }
+
+  &__actions {
+    display: flex;
+    grid-area: actions;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.75rem;
+  }
+
+  &__limit {
+    margin: 0;
+    color: var(--cds-text-secondary);
+    font-size: 0.8125rem;
+  }
+
+  &__total {
+    margin: 0;
+    grid-area: total;
+    font-size: 1.125rem;
+    font-weight: 600;
+
+    @media (min-width: 42rem) {
+      text-align: end;
+    }
+  }
+
+  &__muted {
+    color: var(--cds-text-secondary);
+    font-size: 0.875rem;
+    font-weight: 400;
+  }
+}
+
+.bk-qty {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+
+  &__value {
+    min-inline-size: 2.5rem;
+    font-size: 1.125rem;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    text-align: center;
+  }
+}
+
+.bk-summary {
+  margin: 0 0 0.75rem;
+
+  > div {
+    display: flex;
+    justify-content: space-between;
+    padding-block: 0.5rem;
+    border-block-end: 1px solid var(--cds-border-subtle-01);
+    gap: 1rem;
+  }
+
+  dt {
+    color: var(--cds-text-secondary);
+  }
+
+  dd {
+    margin: 0;
+    font-variant-numeric: tabular-nums;
+  }
+
+  &__total {
+    border-block-end: 0 !important;
+
+    dt,
+    dd {
+      color: var(--cds-text-primary);
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+  }
+
+  &__note {
+    margin-block-end: 1rem;
+    color: var(--cds-text-secondary);
+    font-size: 0.8125rem;
+  }
+
+  &__confirm p {
+    margin-block-end: 0.75rem;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+}
+
+// ---- Checkout and orders ----
+.bk-cart__checkout {
+  inline-size: 100%;
+  max-inline-size: none;
+  margin-block-end: 0.75rem;
+}
+
+.bk-checkout {
+  &__notice {
+    margin-block-end: 1.5rem;
+  }
+
+  &__form {
+    inline-size: 100%;
+    max-inline-size: 36rem;
+  }
+
+  &__heading {
+    margin-block-end: 0.5rem;
+    font-size: 1.25rem;
+  }
+
+  &__lines {
+    display: flex;
+    margin: 0 0 0.75rem;
+    padding: 0;
+    flex-direction: column;
+    list-style: none;
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      padding-block: 0.5rem;
+      border-block-end: 1px solid var(--cds-border-subtle-01);
+      gap: 1rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    &--table li {
+      align-items: flex-start;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--cds-border-subtle-01);
+      margin-block-end: 0.5rem;
+      background: var(--cds-layer-01);
+    }
+  }
+
+  &__qty {
+    color: var(--cds-text-secondary);
+  }
+}
+
+.bk-orders {
+  display: flex;
+  margin: 1rem 0 0;
+  padding: 0;
+  flex-direction: column;
+  gap: 0.75rem;
+  list-style: none;
+}
+
+.bk-order-row {
+  display: grid;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid var(--cds-border-subtle-01);
+  background: var(--cds-layer-01);
+  gap: 0.5rem 1rem;
+  grid-template-columns: minmax(0, 1fr) auto;
+
+  @media (min-width: 42rem) {
+    grid-template-columns: minmax(0, 1fr) auto auto auto;
+  }
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    grid-column: 1 / -1;
+
+    @media (min-width: 42rem) {
+      grid-column: auto;
+    }
+  }
+
+  .cds--tag {
+    justify-self: start;
+    margin: 0;
+  }
+
+  &__number {
+    font-weight: 600;
+    overflow-wrap: anywhere;
+  }
+
+  &__meta {
+    color: var(--cds-text-secondary);
+    font-size: 0.875rem;
+  }
+
+  &__total {
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+  }
+}
+
+.bk-order-meta {
+  display: flex;
+  flex-wrap: wrap;
+  margin-block: 1rem 1.5rem;
+  gap: 1rem 2.5rem;
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  &__label {
+    color: var(--cds-text-secondary);
+    font-size: 0.875rem;
+  }
+}
+
+.bk-order-line__meta {
+  display: block;
+  margin-block-start: 0.25rem;
+  color: var(--cds-text-secondary);
+  font-size: 0.875rem;
+}
+
+.bk-order-address {
+  margin-block-end: 1rem;
+  font-style: normal;
+  line-height: 1.5;
+}
+
